@@ -11,4 +11,6 @@ env:
 - BOARD=uno
 
 script:
-- platformio ci --board=$BOARD --lib=. BatteryMINDer/*;
+- pwd
+- ls
+- platformio ci --board=$BOARD --lib=. BatteryMINDer/*.ino
