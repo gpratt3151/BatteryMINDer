@@ -1,5 +1,6 @@
 /*
  * Based on delay sketch & http://arduino-info.wikispaces.com/ArduinoPower#4-8
+ * Based on "Arrays" from Arduino IDE
  */
 
 const long oneSecond = 1000;  // a second is a thousand milliseconds
@@ -14,100 +15,62 @@ const long oneDay    = oneHour * 24;
 #define RELAY_OFF 1
 /*-----( Declare objects )-----*/
 /*-----( Declare Variables )-----*/
-#define Relay_1  2  // Arduino Digital I/O pin number
-#define Relay_2  12
-#define Relay_3  8
-#define Relay_4  7
+// #define Relay_1  2  // Arduino Digital I/O pin number
+// #define Relay_2  12
+// #define Relay_3  8
+// #define Relay_4  7
+
+int relayPins[] = {
+  2, 12, 8, 7
+};    // an array of pin number to which relays are attached
+int pinCount = 4;  // the number of pins (i.e. the length of the array)
 
 void setup()
 {
+  // the array elements are numbered from 0 to (pinCount - 1).
+    // use a for loop to initialize each pin as an output:
+  for (int thisPin = 0; thisPin < pinCount; thisPin++) {
+    pinMode(relayPins[thisPin], OUTPUT);
+  }
+  
   //-------( Initialize Pins so relays are inactive at reset )----
-  digitalWrite(Relay_1, RELAY_OFF);
-  digitalWrite(Relay_2, RELAY_OFF);
-  digitalWrite(Relay_3, RELAY_OFF);
-  digitalWrite(Relay_4, RELAY_OFF);
-
-  //---( THEN set pins as outputs )---- 
-  pinMode(Relay_1, OUTPUT);
-  pinMode(Relay_2, OUTPUT);
-  pinMode(Relay_3, OUTPUT);
-  pinMode(Relay_4, OUTPUT);
+  for (int thisPin = 0; thisPin < pinCount; thisPin++) {
+    digitalWrite(relayPins[thisPin], RELAY_OFF);
+  }  
   delay(4000); //Check that all relays are inactive at Reset
   
   Serial.begin(9600);
 
-  Serial.println("Set Relay #1 On");
-  digitalWrite(Relay_1, RELAY_ON);
-  Serial.println("On for 10 seconds");
-  delay(tenSeconds);
-  Serial.println("Set Relay #1 Off");
-  digitalWrite(Relay_1, RELAY_OFF);
-  Serial.println("Delay 1 second");
-  delay(oneSecond);
-  
-  Serial.println("Set Relay #2 On");
-  digitalWrite(Relay_2, RELAY_ON);
-  Serial.println("On for 10 seconds");
-  delay(tenSeconds);
-  Serial.println("Set Relay #2 Off");
-  digitalWrite(Relay_2, RELAY_OFF);
-  Serial.println("Delay 1 second");
-  delay(oneSecond);
-
-  Serial.println("Set Relay #3 On");
-  digitalWrite(Relay_3, RELAY_ON);
-  Serial.println("On for 10 seconds");
-  delay(tenSeconds);
-  Serial.println("Set Relay #3 Off");
-  digitalWrite(Relay_3, RELAY_OFF);
-  Serial.println("Delay 1 second");
-  delay(oneSecond);
-
-  Serial.println("Set Relay #4 On");
-  digitalWrite(Relay_4, RELAY_ON);
-  Serial.println("On for 10 seconds");
-  delay(tenSeconds);
-  Serial.println("Set Relay #4 Off");
-  digitalWrite(Relay_4, RELAY_OFF);
-  Serial.println("Delay 1 second");
-  delay(oneSecond); 
+  for (int thisPin = 0; thisPin < pinCount; thisPin++) {
+    Serial.print("Set Relay #");
+    Serial.print(relayPins[thisPin]);
+    Serial.println(" On");
+    digitalWrite(relayPins[thisPin], RELAY_ON);
+    Serial.println("On for 10 seconds");
+    delay(tenSeconds);
+    Serial.print("Set Relay #");
+    Serial.print(relayPins[thisPin]);
+    Serial.println(" Off");
+    digitalWrite(relayPins[thisPin], RELAY_OFF);
+    Serial.println("Delay 1 second");
+    delay(oneSecond);
+  }
 }
 
 void loop()
 {
-  Serial.println("Set Relay #1 On");
-  digitalWrite(Relay_1, RELAY_ON);
-  Serial.println("On for 1 Hour");
-  delay(oneHour);
-  Serial.println("Set Relay #1 Off");
-  digitalWrite(Relay_1, RELAY_OFF);
-  Serial.println("Delay 1 second");
-  delay(oneSecond);
-  
-  Serial.println("Set Relay #2 On");
-  digitalWrite(Relay_2, RELAY_ON);
-  Serial.println("On for 1 Hour");
-  delay(oneHour);
-  Serial.println("Set Relay #2 Off");
-  digitalWrite(Relay_2, RELAY_OFF);
-  Serial.println("Delay 1 second");
-  delay(oneSecond);
-
-  Serial.println("Set Relay #3 On");
-  digitalWrite(Relay_3, RELAY_ON);
-  Serial.println("On for 1 Hour");
-  delay(oneHour);
-  Serial.println("Set Relay #3 Off");
-  digitalWrite(Relay_3, RELAY_OFF);
-  Serial.println("Delay 1 second");
-  delay(oneSecond);
-
-  Serial.println("Set Relay #4 On");
-  digitalWrite(Relay_4, RELAY_ON);
-  Serial.println("On for 1 Hour");
-  delay(oneHour);
-  Serial.println("Set Relay #4 Off");
-  digitalWrite(Relay_4, RELAY_OFF);
-  Serial.println("Delay 1 second");
-  delay(oneSecond);
+  for (int thisPin = 0; thisPin < pinCount; thisPin++) {
+    Serial.print("Set Relay #");
+    Serial.print(relayPins[thisPin]);
+    Serial.println(" On");
+    digitalWrite(relayPins[thisPin], RELAY_ON);
+    Serial.println("On for 10 seconds");
+    delay(oneHour);
+    Serial.print("Set Relay #");
+    Serial.print(relayPins[thisPin]);
+    Serial.println(" Off");
+    digitalWrite(relayPins[thisPin], RELAY_OFF);
+    Serial.println("Delay 1 second");
+    delay(oneSecond);
+  }
 }
