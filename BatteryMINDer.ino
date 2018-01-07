@@ -2,7 +2,7 @@
  * Based on delay sketch & http://arduino-info.wikispaces.com/ArduinoPower#4-8
  * Based on "Arrays" from Arduino IDE
  *
- * The Adafruit Trinket doesn's support serial communications so you must
+ * The Adafruit Trinket doesn't support serial communications so you must
  * comment out all references to serial communications.
  */
 
@@ -17,7 +17,7 @@ const long oneDay    = oneHour * 24;
 #define RELAY_ON 0
 #define RELAY_OFF 1
 
-#define Pulse_Counter 13  // Modify for chip. Uno = 13 / Trinket = 1
+#define Pulse_Counter 1  // Modify for chip. Uno = 13 / Trinket = 1
 
 /*-----( Declare Variables )-----*/
 /* 
@@ -29,10 +29,11 @@ const long oneDay    = oneHour * 24;
  *  GPIO #4 - Digital READ/WRITE
  * 
 */
+// an array of pin number to which relays are attached
 int relayPins[] = {
   // 2, 12, 8, 7  // Uncomment for Arduino UNO
-  0, 2, 3, 4  // Uncomment for Adafruit Trinket
-};    // an array of pin number to which relays are attached
+  0, 2, 3, 4      // Uncomment for Adafruit Trinket
+};    
 int pinCount = 4;  // the number of pins (i.e. the length of the array)
 
 /*-----( Setup - Runs once )-----*/
