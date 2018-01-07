@@ -10,15 +10,3 @@ Using an Arduino or clone and 4 relays I have the ability to control the relays 
 ## Approach
 Use ideas, principles, and concepts from DevOps develop a minimum viable product to meet my needs and as I learn (via feedback) add features as necessary.
 
-### First iteration
-__Goal__
-Control 2 relays
-Use delay() to control the time between sequences
-Write the state out to the serial port
-
-__Outcomes__ 
-Learn how relays are controlled (i.e. whether pinmode has to be HIGH or LOW)
-Learn how to connect the relays to the digital ports
-Initialize the relays so they are off first
-Sequence between them every hour
-
