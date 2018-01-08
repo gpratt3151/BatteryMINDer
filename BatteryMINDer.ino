@@ -94,8 +94,8 @@ void setup()
 void loop()
 {
   // int printRelay = 1; // Uncomment if using Serial
-  countPulse();
   for (int thisPin = 0; thisPin < pinCount; thisPin++) {
+    countPulse();
     // Serial.print("Relay_# [Pin] STATUS");
     // Serial.print(printRelay);
     // Serial.print(" [");
