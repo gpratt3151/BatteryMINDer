@@ -63,7 +63,8 @@ void setup()
   // it 30 seconds to see if it's going to go into "desulphation"
   // mode otherwise the battery needs charging.
 
-  int printRelay = 1;  // for printing the relay number
+  // Uncomment if using Serial
+  // int printRelay = 1;  // for printing the relay number  
   for (int thisPin = 0; thisPin < pinCount; thisPin++) {
     countPulse();
     // Serial.print("Relay_# [Pin] STATUS");
@@ -86,14 +87,15 @@ void setup()
     // Serial.println("Settle for 1 second");
     delay(oneSecond);
 
-    printRelay++;
+    // printRelay++;  // Uncomment if usign Serial
   }
 }
 
 void loop()
 {
-  int printRelay = 1;
+  // int printRelay = 1; // Uncomment if using Serial
   for (int thisPin = 0; thisPin < pinCount; thisPin++) {
+    countPulse();
     // Serial.print("Relay_# [Pin] STATUS");
     // Serial.print(printRelay);
     // Serial.print(" [");
@@ -114,7 +116,7 @@ void loop()
     // Serial.println("Settle for 1 second");
     delay(oneSecond);
 
-    printRelay++;
+    // printRelay++; // Uncomment if using Serial
   }
 }
 
